@@ -1,39 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Homepage</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      text-align: center;
-      padding-top: 100px;
-    }
-    h1 {
-      margin-bottom: 40px;
-    }
-    a {
-      display: inline-block;
-      margin: 15px;
-      padding: 12px 20px;
-      text-decoration: none;
-      color: white;
-      background: #0073e6;
-      border-radius: 8px;
-      transition: background 0.3s ease;
-    }
-    a:hover {
-      background: #005bb5;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookmark Mosaic</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+
+        .mosaic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .icon-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+        }
+
+        .icon-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: #007bff;
+        }
+
+        .icon-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .icon-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .icon-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .icon-item:hover::after {
+            transform: translateX(100%);
+        }
+
+        .instructions {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #007bff;
+        }
+
+        .instructions h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .instructions p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .instructions code {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        @media (max-width: 768px) {
+            .mosaic-grid {
+                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+                gap: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Welcome to My Homepage</h1>
-  <a href="https://www.google.com" target="_blank">Google</a>
-  <a href="https://www.espn.com" target="_blank">ESPN</a>
-  <a href="https://www.google.com" target="_blank">Google</a>
+    <div class="container">
+        <h1>My Bookmark Mosaic</h1>
+        
+        <div class="mosaic-grid" id="mosaicGrid">
+            <!-- Sample icons - replace these with your own -->
+            <div class="icon-item" onclick="navigateToSite('https://www.google.com')">
+                <img src="https://www.google.com/favicon.ico" alt="Google">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.youtube.com')">
+                <img src="https://www.youtube.com/favicon.ico" alt="YouTube">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.amazon.com')">
+                <img src="https://www.amazon.com/favicon.ico" alt="Amazon">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.facebook.com')">
+                <img src="https://www.facebook.com/favicon.ico" alt="Facebook">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.twitter.com')">
+                <img src="https://abs.twimg.com/favicons/twitter.3.ico" alt="Twitter">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.netflix.com')">
+                <img src="https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2023.ico" alt="Netflix">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.reddit.com')">
+                <img src="https://www.reddit.com/favicon.ico" alt="Reddit">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.github.com')">
+                <img src="https://github.com/favicon.ico" alt="GitHub">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.linkedin.com')">
+                <img src="https://static.licdn.com/aero-v1/sc/h/al2o9zrvru7aqj8e1x2rzsrca" alt="LinkedIn">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.instagram.com')">
+                <img src="https://static.cdninstagram.com/rsrc.php/v3/yt/r/30PrGfR3xhI.ico" alt="Instagram">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.spotify.com')">
+                <img src="https://open.spotify.com/favicon.ico" alt="Spotify">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.wikipedia.org')">
+                <img src="https://www.wikipedia.org/favicon.ico" alt="Wikipedia">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.dropbox.com')">
+                <img src="https://cfl.dropboxstatic.com/static/images/favicon-vfl8lUR9B.ico" alt="Dropbox">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.twitch.tv')">
+                <img src="https://static.twitchcdn.net/assets/favicon-32-e29e246c157142918a6df7a6d0d746af.png" alt="Twitch">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.pinterest.com')">
+                <img src="https://s.pinimg.com/webapp/favicon-6e05aa7e.ico" alt="Pinterest">
+            </div>
+            <div class="icon-item" onclick="navigateToSite('https://www.discord.com')">
+                <img src="https://discord.com/assets/07dca80a102d4149e9736d4b162cff6f.ico" alt="Discord">
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>How to Customize Your Mosaic:</h3>
+            <p><strong>To add your own icons:</strong></p>
+            <p>1. Replace the <code>src</code> attribute in each <code>&lt;img&gt;</code> tag with the path to your image</p>
+            <p>2. Update the <code>onclick</code> function with your desired URL: <code>navigateToSite('https://yoursite.com')</code></p>
+            <p>3. Change the <code>alt</code> text to describe your icon</p>
+            
+            <p><strong>To add more icons:</strong></p>
+            <p>Copy and paste this template into the mosaic-grid div:</p>
+            <p><code>&lt;div class="icon-item" onclick="navigateToSite('YOUR_URL')"&gt;<br>
+            &nbsp;&nbsp;&lt;img src="YOUR_IMAGE_PATH" alt="YOUR_DESCRIPTION"&gt;<br>
+            &lt;/div&gt;</code></p>
+            
+            <p><strong>Image recommendations:</strong> Use square images (1:1 aspect ratio) for best results. PNG or SVG formats work great for logos.</p>
+        </div>
+    </div>
+
+    <script>
+        function navigateToSite(url) {
+            // Open in the same tab
+            window.location.href = url;
+            
+            // Uncomment the line below if you prefer to open in a new tab instead:
+            // window.open(url, '_blank');
+        }
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            const items = document.querySelectorAll('.icon-item');
+            const currentFocus = document.activeElement;
+            const currentIndex = Array.from(items).indexOf(currentFocus);
+            
+            let nextIndex = currentIndex;
+            
+            switch(e.key) {
+                case 'ArrowRight':
+                    nextIndex = (currentIndex + 1) % items.length;
+                    break;
+                case 'ArrowLeft':
+                    nextIndex = (currentIndex - 1 + items.length) % items.length;
+                    break;
+                case 'ArrowDown':
+                    // Calculate grid columns based on current viewport
+                    const gridStyle = window.getComputedStyle(document.querySelector('.mosaic-grid'));
+                    const columns = gridStyle.gridTemplateColumns.split(' ').length;
+                    nextIndex = (currentIndex + columns) % items.length;
+                    break;
+                case 'ArrowUp':
+                    const gridStyleUp = window.getComputedStyle(document.querySelector('.mosaic-grid'));
+                    const columnsUp = gridStyleUp.gridTemplateColumns.split(' ').length;
+                    nextIndex = (currentIndex - columnsUp + items.length) % items.length;
+                    break;
+                case 'Enter':
+                    if (currentFocus && currentFocus.classList.contains('icon-item')) {
+                        currentFocus.click();
+                    }
+                    return;
+            }
+            
+            if (nextIndex !== currentIndex) {
+                e.preventDefault();
+                items[nextIndex].focus();
+            }
+        });
+
+        // Make icons focusable for keyboard navigation
+        document.querySelectorAll('.icon-item').forEach(item => {
+            item.setAttribute('tabindex', '0');
+        });
+    </script>
 </body>
 </html>
-
