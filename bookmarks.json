@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "logoUrl": "https://www.google.com/favicon.ico",
+    "websiteUrl": "https://www.google.com",
+    "siteName": "Google"
+  },
+  {
+    "id": 2,
+    "logoUrl": "https://www.youtube.com/favicon.ico",
+    "websiteUrl": "https://www.youtube.com",
+    "siteName": "YouTube"
+  },
+  {
+    "id": 3,
+    "logoUrl": "https://www.amazon.com/favicon.ico",
+    "websiteUrl": "https://www.amazon.com",
+    "siteName": "Amazon"
+  },
+  {
+    "id": 4,
+    "logoUrl": "https://www.facebook.com/favicon.ico",
+    "websiteUrl": "https://www.facebook.com",
+    "siteName": "Facebook"
+  },
+  {
+    "id": 5,
+    "logoUrl": "https://abs.twimg.com/favicons/twitter.3.ico",
+    "websiteUrl": "https://www.twitter.com",
+    "siteName": "Twitter"
+  },
+  {
+    "id": 6,
+    "logoUrl": "https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2023.ico",
+    "websiteUrl": "https://www.netflix.com",
+    "siteName": "Netflix"
+  },
+  {
+    "id": 7,
+    "logoUrl": "https://www.reddit.com/favicon.ico",
+    "websiteUrl": "https://www.reddit.com",
+    "siteName": "Reddit"
+  },
+  {
+    "id": 8,
+    "logoUrl": "https://github.com/favicon.ico",
+    "websiteUrl": "https://www.github.com",
+    "siteName": "GitHub"
+  },
+  {
+    "id": 9,
+    "logoUrl": "https://static.licdn.com/aero-v1/sc/h/al2o9zrvru7aqj8e1x2rzsrca",
+    "websiteUrl": "https://www.linkedin.com",
+    "siteName": "LinkedIn"
+  },
+  {
+    "id": 10,
+    "logoUrl": "https://static.cdninstagram.com/rsrc.php/v3/yt/r/30PrGfR3xhI.ico",
+    "websiteUrl": "https://www.instagram.com",
+    "siteName": "Instagram"
+  },
+  {
+    "id": 11,
+    "logoUrl": "https://open.spotify.com/favicon.ico",
+    "websiteUrl": "https://www.spotify.com",
+    "siteName": "Spotify"
+  },
+  {
+    "id": 12,
+    "logoUrl": "https://www.wikipedia.org/favicon.ico",
+    "websiteUrl": "https://www.wikipedia.org",
+    "siteName": "Wikipedia"
+  }
+]
