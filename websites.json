@@ -59,6 +59,11 @@
       "name": "Discord",
       "url": "https://discord.com",
       "logoUrl": "https://discord.com/favicon.ico"
+    },
+        {
+      "name": "ESPN",
+      "url": "https://espn.com",
+      "logoUrl": "https://www.pngarts.com/files/16/ESPN-Logo-PNG-HQ-Pic.png"
     }
   ]
 }
