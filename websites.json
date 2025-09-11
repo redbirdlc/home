@@ -1,0 +1,64 @@
+{
+  "websites": [
+    {
+      "name": "Google",
+      "url": "https://www.google.com",
+      "logoUrl": "https://www.google.com/favicon.ico"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com",
+      "logoUrl": "https://github.com/favicon.ico"
+    },
+    {
+      "name": "YouTube",
+      "url": "https://www.youtube.com",
+      "logoUrl": "https://www.youtube.com/favicon.ico"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com",
+      "logoUrl": "https://twitter.com/favicon.ico"
+    },
+    {
+      "name": "Reddit",
+      "url": "https://www.reddit.com",
+      "logoUrl": "https://www.reddit.com/favicon.ico"
+    },
+    {
+      "name": "Stack Overflow",
+      "url": "https://stackoverflow.com",
+      "logoUrl": "https://stackoverflow.com/favicon.ico"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com",
+      "logoUrl": "https://www.linkedin.com/favicon.ico"
+    },
+    {
+      "name": "Netflix",
+      "url": "https://www.netflix.com",
+      "logoUrl": "https://www.netflix.com/favicon.ico"
+    },
+    {
+      "name": "Amazon",
+      "url": "https://www.amazon.com",
+      "logoUrl": "https://www.amazon.com/favicon.ico"
+    },
+    {
+      "name": "Wikipedia",
+      "url": "https://www.wikipedia.org",
+      "logoUrl": "https://www.wikipedia.org/favicon.ico"
+    },
+    {
+      "name": "Gmail",
+      "url": "https://mail.google.com",
+      "logoUrl": "https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico"
+    },
+    {
+      "name": "Discord",
+      "url": "https://discord.com",
+      "logoUrl": "https://discord.com/favicon.ico"
+    }
+  ]
+}
