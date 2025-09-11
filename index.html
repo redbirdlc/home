@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Bookmark Mosaic</title>
+    <title>My Website Hub</title>
     <style>
         * {
             margin: 0;
@@ -12,399 +12,241 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e3e9f0 0%, #d4dce8 100%);
             min-height: 100vh;
+            padding: 40px 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            color: #5a6c7d;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
+        }
+
+        .header p {
+            color: #7a8a9a;
+            font-size: 1.1rem;
+            font-weight: 300;
         }
 
         .container {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
             max-width: 1200px;
             width: 100%;
         }
 
-        .mosaic-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 15px;
-            max-width: 100%;
-            margin: 0 auto;
-        }
-
-        .icon-item {
-            position: relative;
-            aspect-ratio: 1;
-            border-radius: 50%;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .neu-button {
+            background: linear-gradient(145deg, #e6ecf0, #d0dae1);
+            border: none;
+            border-radius: 25px;
+            padding: 30px;
             cursor: pointer;
-            background: linear-gradient(145deg, #ffffff, #f0f0f0);
-            border: 1px solid rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
             box-shadow: 
-                0 8px 32px rgba(0,0,0,0.1),
-                inset 0 1px 0 rgba(255,255,255,0.9),
-                inset 0 -1px 0 rgba(0,0,0,0.05);
-        }
-
-        .icon-item:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 
-                0 20px 60px rgba(0,0,0,0.15),
-                0 8px 16px rgba(0,0,0,0.1),
-                inset 0 1px 0 rgba(255,255,255,0.9),
-                inset 0 -1px 0 rgba(0,0,0,0.05);
-            background: linear-gradient(145deg, #ffffff, #f8f8f8);
-        }
-
-        .icon-item::before {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            right: 2px;
-            height: 40%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.2) 100%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .icon-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 12px;
-            transition: all 0.4s ease;
+                20px 20px 60px #b8c5d1,
+                -20px -20px 60px #ffffff;
             position: relative;
-            z-index: 2;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+            text-decoration: none;
+            color: inherit;
         }
 
-        .icon-item:hover img {
-            transform: scale(1.1);
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+        .neu-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                25px 25px 80px #b8c5d1,
+                -25px -25px 80px #ffffff;
         }
 
-        .icon-item::after {
+        .neu-button:active {
+            transform: translateY(2px);
+            box-shadow: 
+                inset 20px 20px 60px #b8c5d1,
+                inset -20px -20px 60px #ffffff;
+        }
+
+        .neu-button::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
-            transform: translateX(-100%);
-            transition: transform 0.8s ease;
-            border-radius: 50%;
+            background: linear-gradient(145deg, transparent, rgba(255,255,255,0.1));
+            border-radius: 25px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .icon-item:hover::after {
-            transform: translateX(100%);
+        .neu-button:hover::before {
+            opacity: 1;
         }
 
-        .icon-item:active {
-            transform: translateY(-4px) scale(0.98);
-            box-shadow: 
-                0 8px 25px rgba(0,0,0,0.1),
-                inset 0 2px 4px rgba(0,0,0,0.1);
+        .logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.7);
+            padding: 10px;
+        }
+
+        .button-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #5a6c7d;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
         }
 
         .loading {
-            text-align: center;
-            padding: 40px;
-            color: #5a5c69;
-            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            font-size: 1.2rem;
+            color: #7a8a9a;
         }
 
         .error {
+            background: linear-gradient(145deg, #f0e6e6, #e1d0d0);
+            border-radius: 15px;
+            padding: 20px;
             text-align: center;
-            padding: 40px;
-            color: #8b5a6b;
-            font-size: 1.1em;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #5a5c69;
-        }
-
-        .empty-state h3 {
-            margin-bottom: 15px;
-            color: #4a4c59;
-        }
-
-        .empty-state p {
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        .empty-state .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: background 0.3s ease;
-        }
-
-        .empty-state .btn:hover {
-            background: #0056b3;
-        }
-
-        .admin-link {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(255,255,255,0.9);
-            padding: 10px 15px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #007bff;
-            font-weight: 600;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .admin-link:hover {
-            background: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            color: #8a5a5a;
+            box-shadow: 
+                10px 10px 30px #c5b8b8,
+                -10px -10px 30px #ffffff;
         }
 
         @media (max-width: 768px) {
-            .mosaic-grid {
-                grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-                gap: 10px;
+            .container {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 20px;
             }
             
-            .container {
+            .neu-button {
                 padding: 20px;
+                min-height: 150px;
             }
+            
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
 
-            .admin-link {
-                position: static;
-                display: block;
-                text-align: center;
-                margin: 20px auto;
-                width: fit-content;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .neu-button {
+            animation: fadeIn 0.6s ease forwards;
         }
     </style>
 </head>
 <body>
-    <a href="admin.html" class="admin-link">⚙️ Manage Bookmarks</a>
+    <div class="header">
+        <h1>My Website Hub</h1>
+        <p>Quick access to your favorite websites</p>
+    </div>
     
-    <div class="container">
-        <div id="loadingState" class="loading">
-            Loading your bookmarks...
-        </div>
-        
-        <div id="errorState" class="error" style="display: none;">
-            Unable to load bookmarks. Please check your bookmarks.json file.
-        </div>
-        
-        <div id="emptyState" class="empty-state" style="display: none;">
-            <h3>No Bookmarks Yet!</h3>
-            <p>Get started by adding your favorite websites to your personal bookmark mosaic.</p>
-            <a href="admin.html" class="btn">Add Your First Bookmark</a>
-        </div>
-        
-        <div class="mosaic-grid" id="mosaicGrid" style="display: none;">
-            <!-- Bookmarks will be loaded here -->
-        </div>
+    <div id="container" class="container">
+        <div class="loading">Loading websites...</div>
     </div>
 
     <script>
-        let bookmarks = [];
-
-        // Load bookmarks when page loads
-        window.onload = function() {
-            loadBookmarks();
-        };
-
-        async function loadBookmarks() {
+        async function loadWebsites() {
             try {
-                // First try to load from bookmarks.json file
-                const response = await fetch('bookmarks.json');
-                if (response.ok) {
-                    bookmarks = await response.json();
-                } else {
-                    // If file doesn't exist, try localStorage (for local development)
-                    const saved = localStorage.getItem('bookmarks');
-                    if (saved) {
-                        bookmarks = JSON.parse(saved);
-                    } else {
-                        // Use default bookmarks if nothing is found
-                        bookmarks = getDefaultBookmarks();
-                    }
+                const response = await fetch('./websites.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                
-                renderBookmarks();
+                const data = await response.json();
+                renderButtons(data.websites);
             } catch (error) {
-                console.error('Error loading bookmarks:', error);
-                
-                // Try localStorage as fallback
-                try {
-                    const saved = localStorage.getItem('bookmarks');
-                    if (saved) {
-                        bookmarks = JSON.parse(saved);
-                        renderBookmarks();
-                    } else {
-                        showEmptyState();
-                    }
-                } catch (e) {
-                    showErrorState();
-                }
+                console.error('Error loading websites:', error);
+                showError('Failed to load websites. Please check that websites.json exists and is properly formatted.');
             }
         }
 
-        function renderBookmarks() {
-            const loadingState = document.getElementById('loadingState');
-            const errorState = document.getElementById('errorState');
-            const emptyState = document.getElementById('emptyState');
-            const mosaicGrid = document.getElementById('mosaicGrid');
-            
-            // Hide all states
-            loadingState.style.display = 'none';
-            errorState.style.display = 'none';
-            emptyState.style.display = 'none';
-            
-            if (!bookmarks || bookmarks.length === 0) {
-                showEmptyState();
-                return;
+        function renderButtons(websites) {
+            const container = document.getElementById('container');
+            container.innerHTML = '';
+
+            websites.forEach((website, index) => {
+                const button = document.createElement('a');
+                button.className = 'neu-button';
+                button.href = website.url;
+                button.target = '_blank';
+                button.rel = 'noopener noreferrer';
+                button.style.animationDelay = `${index * 0.1}s`;
+                
+                button.innerHTML = `
+                    <img src="${website.logoUrl}" alt="${website.name}" class="logo" onerror="this.style.display='none'">
+                    <div class="button-title">${website.name}</div>
+                `;
+
+                // Add click tracking (optional)
+                button.addEventListener('click', (e) => {
+                    console.log(`Navigating to ${website.name}: ${website.url}`);
+                });
+
+                container.appendChild(button);
+            });
+        }
+
+        function showError(message) {
+            const container = document.getElementById('container');
+            container.innerHTML = `
+                <div class="error">
+                    <h3>Oops! Something went wrong</h3>
+                    <p>${message}</p>
+                    <p style="margin-top: 10px; font-size: 0.9rem;">Make sure websites.json is in the same directory as index.html</p>
+                </div>
+            `;
+        }
+
+        // Load websites when page loads
+        document.addEventListener('DOMContentLoaded', loadWebsites);
+
+        // Handle image loading errors gracefully
+        document.addEventListener('error', (e) => {
+            if (e.target.tagName === 'IMG') {
+                e.target.style.display = 'none';
             }
-            
-            // Show the mosaic grid
-            mosaicGrid.style.display = 'grid';
-            mosaicGrid.innerHTML = '';
-            
-            bookmarks.forEach(bookmark => {
-                const iconItem = document.createElement('div');
-                iconItem.className = 'icon-item';
-                iconItem.setAttribute('tabindex', '0');
-                iconItem.setAttribute('title', bookmark.siteName || bookmark.websiteUrl);
-                iconItem.onclick = () => navigateToSite(bookmark.websiteUrl);
-                
-                const img = document.createElement('img');
-                img.src = bookmark.logoUrl;
-                img.alt = bookmark.siteName || 'Website';
-                img.onerror = function() {
-                    // Fallback image if logo fails to load
-                    this.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" fill="%23f0f0f0"/><text x="32" y="36" text-anchor="middle" fill="%23999" font-size="14">🌐</text></svg>';
-                };
-                
-                iconItem.appendChild(img);
-                mosaicGrid.appendChild(iconItem);
-            });
-            
-            // Re-enable keyboard navigation
-            enableKeyboardNavigation();
-        }
-
-        function showEmptyState() {
-            document.getElementById('loadingState').style.display = 'none';
-            document.getElementById('errorState').style.display = 'none';
-            document.getElementById('mosaicGrid').style.display = 'none';
-            document.getElementById('emptyState').style.display = 'block';
-        }
-
-        function showErrorState() {
-            document.getElementById('loadingState').style.display = 'none';
-            document.getElementById('emptyState').style.display = 'none';
-            document.getElementById('mosaicGrid').style.display = 'none';
-            document.getElementById('errorState').style.display = 'block';
-        }
-
-        function navigateToSite(url) {
-            // Open in the same tab
-            window.location.href = url;
-            
-            // Uncomment the line below if you prefer to open in a new tab instead:
-            // window.open(url, '_blank');
-        }
-
-        function enableKeyboardNavigation() {
-            // Add keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                const items = document.querySelectorAll('.icon-item');
-                if (items.length === 0) return;
-                
-                const currentFocus = document.activeElement;
-                const currentIndex = Array.from(items).indexOf(currentFocus);
-                
-                let nextIndex = currentIndex;
-                
-                switch(e.key) {
-                    case 'ArrowRight':
-                        nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % items.length;
-                        break;
-                    case 'ArrowLeft':
-                        nextIndex = currentIndex === -1 ? 0 : (currentIndex - 1 + items.length) % items.length;
-                        break;
-                    case 'ArrowDown':
-                        // Calculate grid columns based on current viewport
-                        const gridStyle = window.getComputedStyle(document.querySelector('.mosaic-grid'));
-                        const columns = gridStyle.gridTemplateColumns.split(' ').length;
-                        nextIndex = currentIndex === -1 ? 0 : (currentIndex + columns) % items.length;
-                        break;
-                    case 'ArrowUp':
-                        const gridStyleUp = window.getComputedStyle(document.querySelector('.mosaic-grid'));
-                        const columnsUp = gridStyleUp.gridTemplateColumns.split(' ').length;
-                        nextIndex = currentIndex === -1 ? 0 : (currentIndex - columnsUp + items.length) % items.length;
-                        break;
-                    case 'Enter':
-                        if (currentFocus && currentFocus.classList.contains('icon-item')) {
-                            currentFocus.click();
-                        }
-                        return;
-                }
-                
-                if (nextIndex !== currentIndex && nextIndex >= 0) {
-                    e.preventDefault();
-                    items[nextIndex].focus();
-                }
-            });
-        }
-
-        function getDefaultBookmarks() {
-            // Default bookmarks to show if no JSON file is found
-            return [
-                {
-                    id: 1,
-                    logoUrl: "https://www.google.com/favicon.ico",
-                    websiteUrl: "https://www.google.com",
-                    siteName: "Google"
-                },
-                {
-                    id: 2,
-                    logoUrl: "https://www.youtube.com/favicon.ico",
-                    websiteUrl: "https://www.youtube.com",
-                    siteName: "YouTube"
-                },
-                {
-                    id: 3,
-                    logoUrl: "https://github.com/favicon.ico",
-                    websiteUrl: "https://www.github.com",
-                    siteName: "GitHub"
-                },
-                {
-                    id: 4,
-                    logoUrl: "https://www.reddit.com/favicon.ico",
-                    websiteUrl: "https://www.reddit.com",
-                    siteName: "Reddit"
-                }
-            ];
-        }
+        }, true);
     </script>
 </body>
 </html>
