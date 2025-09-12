@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website Hub</title>
+    <title>Website Launcher</title>
     <style>
         * {
             margin: 0;
@@ -13,12 +13,14 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .header {
@@ -27,203 +29,268 @@
         }
 
         .header h1 {
-            color: #333;
-            font-size: 2.5rem;
+            color: white;
+            font-size: 3rem;
             font-weight: 300;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
             margin-bottom: 10px;
         }
 
         .header p {
-            color: #666;
-            font-size: 1.1rem;
-            font-weight: 300;
+            color: rgba(255,255,255,0.8);
+            font-size: 1.2rem;
         }
 
-        .container {
+        .websites-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            max-width: 1200px;
-            width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            padding: 20px;
         }
 
-        .neu-button {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 15px;
-            padding: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
+        .website-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 180px;
             text-decoration: none;
-            color: inherit;
+            transition: transform 0.3s ease;
         }
 
-        .neu-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            border-color: #ccc;
+        .website-item:hover {
+            transform: translateY(-5px);
         }
 
-        .neu-button:active {
-            transform: translateY(1px);
-            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-        }
-
-        .logo {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            background: rgba(248,248,248,0.8);
-            padding: 10px;
-        }
-
-        .button-title {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #333;
-            text-align: center;
-        }
-
-        .loading {
+        .neuromorphic-button {
+            width: 120px;
+            height: 120px;
+            border-radius: 25px;
+            background: linear-gradient(145deg, #f0f0f3, #cacace);
+            border: none;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 200px;
-            font-size: 1.2rem;
-            color: #666;
+            transition: all 0.3s ease;
+            box-shadow: 
+                20px 20px 40px rgba(163, 177, 198, 0.6),
+                -20px -20px 40px rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
         }
 
-        .error {
-            background: #f0f0f0;
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            color: #c00;
+        .neuromorphic-button:hover {
             box-shadow: 
-                8px 8px 16px #d1d1d1,
-                -8px -8px 16px #ffffff;
-            max-width: 400px;
+                15px 15px 30px rgba(163, 177, 198, 0.8),
+                -15px -15px 30px rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .neuromorphic-button:active {
+            box-shadow: 
+                inset 10px 10px 20px rgba(163, 177, 198, 0.6),
+                inset -10px -10px 20px rgba(255, 255, 255, 0.8);
+            transform: translateY(0);
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            transition: transform 0.3s ease;
+        }
+
+        .neuromorphic-button:hover .logo-img {
+            transform: scale(1.1);
+        }
+
+        .website-name {
+            margin-top: 15px;
+            color: white;
+            font-weight: 500;
+            font-size: 1rem;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            transition: color 0.3s ease;
+        }
+
+        .website-item:hover .website-name {
+            color: #ffd700;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
         }
 
         @media (max-width: 768px) {
-            .container {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 10px;
+            .websites-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 20px;
             }
             
-            .neu-button {
-                padding: 20px;
-                min-height: 150px;
+            .neuromorphic-button {
+                width: 100px;
+                height: 100px;
             }
             
-            .logo {
-                width: 60px;
-                height: 60px;
+            .logo-img {
+                width: 50px;
+                height: 50px;
             }
             
             .header h1 {
                 font-size: 2rem;
             }
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .neu-button {
-            animation: fadeIn 0.6s ease forwards;
-        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>My Website Hub</h1>
-        <p>Quick access to your favorite websites</p>
-    </div>
-    
-    <div id="container" class="container">
-        <div class="loading">Loading websites...</div>
+    <div class="container">
+        <div class="websites-grid" id="websitesGrid">
+            <!-- Websites will be dynamically loaded here -->
+        </div>
     </div>
 
     <script>
-        async function loadWebsites() {
-            try {
-                const response = await fetch('./websites.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+        const websitesData = {
+            "websites": [
+                {
+                    "name": "Google",
+                    "url": "https://www.google.com",
+                    "logoUrl": "https://static.vecteezy.com/system/resources/previews/046/861/647/non_2x/google-logo-transparent-background-free-png.png"
+                },
+                {
+                    "name": "GitHub",
+                    "url": "https://github.com",
+                    "logoUrl": "https://logos-world.net/wp-content/uploads/2020/11/GitHub-Symbol.png"
+                },
+                {
+                    "name": "YouTube",
+                    "url": "https://www.youtube.com",
+                    "logoUrl": "https://www.youtube.com/favicon.ico"
+                },
+                {
+                    "name": "Twitter",
+                    "url": "https://twitter.com",
+                    "logoUrl": "https://twitter.com/favicon.ico"
+                },
+                {
+                    "name": "Reddit",
+                    "url": "https://www.reddit.com",
+                    "logoUrl": "https://www.reddit.com/favicon.ico"
+                },
+                {
+                    "name": "Stack Overflow",
+                    "url": "https://stackoverflow.com",
+                    "logoUrl": "https://stackoverflow.com/favicon.ico"
+                },
+                {
+                    "name": "LinkedIn",
+                    "url": "https://www.linkedin.com",
+                    "logoUrl": "https://www.linkedin.com/favicon.ico"
+                },
+                {
+                    "name": "Netflix",
+                    "url": "https://www.netflix.com",
+                    "logoUrl": "https://www.netflix.com/favicon.ico"
+                },
+                {
+                    "name": "Amazon",
+                    "url": "https://www.amazon.com",
+                    "logoUrl": "https://www.amazon.com/favicon.ico"
+                },
+                {
+                    "name": "Wikipedia",
+                    "url": "https://www.wikipedia.org",
+                    "logoUrl": "https://www.wikipedia.org/favicon.ico"
+                },
+                {
+                    "name": "Gmail",
+                    "url": "https://mail.google.com",
+                    "logoUrl": "https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico"
+                },
+                {
+                    "name": "Discord",
+                    "url": "https://discord.com",
+                    "logoUrl": "https://discord.com/favicon.ico"
+                },
+                {
+                    "name": "ESPN",
+                    "url": "https://espn.com",
+                    "logoUrl": "https://www.pngarts.com/files/16/ESPN-Logo-PNG-HQ-Pic.png"
                 }
-                const data = await response.json();
-                renderButtons(data.websites);
-            } catch (error) {
-                console.error('Error loading websites:', error);
-                showError('Failed to load websites. Please check that websites.json exists and is properly formatted.');
-            }
+            ]
+        };
+
+        function createRipple(e, button) {
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            button.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
         }
 
-        function renderButtons(websites) {
-            const container = document.getElementById('container');
-            container.innerHTML = '';
+        function navigateToWebsite(url) {
+            window.open(url, '_blank');
+        }
 
-            websites.forEach((website, index) => {
-                const button = document.createElement('a');
-                button.className = 'neu-button';
-                button.href = website.url;
-                button.target = '_blank';
-                button.rel = 'noopener noreferrer';
-                button.style.animationDelay = `${index * 0.1}s`;
+        function loadWebsites() {
+            const grid = document.getElementById('websitesGrid');
+            
+            websitesData.websites.forEach(website => {
+                const websiteItem = document.createElement('a');
+                websiteItem.className = 'website-item';
+                websiteItem.href = '#';
                 
-                button.innerHTML = `
-                    <img src="${website.logoUrl}" alt="${website.name}" class="logo" onerror="this.style.display='none'">
-                    <div class="button-title">${website.name}</div>
+                websiteItem.innerHTML = `
+                    <button class="neuromorphic-button">
+                        <img src="${website.logoUrl}" alt="${website.name} logo" class="logo-img" 
+                             onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22><rect width=%2240%22 height=%2240%22 fill=%22%23ddd%22/><text x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22>${website.name.charAt(0)}</text></svg>'">
+                    </button>
+                    <span class="website-name">${website.name}</span>
                 `;
-
-                // Add click tracking (optional)
+                
+                const button = websiteItem.querySelector('.neuromorphic-button');
+                
                 button.addEventListener('click', (e) => {
-                    console.log(`Navigating to ${website.name}: ${website.url}`);
+                    createRipple(e, button);
+                    setTimeout(() => {
+                        navigateToWebsite(website.url);
+                    }, 100);
                 });
-
-                container.appendChild(button);
+                
+                websiteItem.addEventListener('click', (e) => {
+                    e.preventDefault();
+                });
+                
+                grid.appendChild(websiteItem);
             });
-        }
-
-        function showError(message) {
-            const container = document.getElementById('container');
-            container.innerHTML = `
-                <div class="error">
-                    <h3>Oops! Something went wrong</h3>
-                    <p>${message}</p>
-                    <p style="margin-top: 10px; font-size: 0.9rem;">Make sure websites.json is in the same directory as index.html</p>
-                </div>
-            `;
         }
 
         // Load websites when page loads
         document.addEventListener('DOMContentLoaded', loadWebsites);
-
-        // Handle image loading errors gracefully
-        document.addEventListener('error', (e) => {
-            if (e.target.tagName === 'IMG') {
-                e.target.style.display = 'none';
-            }
-        }, true);
     </script>
 </body>
 </html>
